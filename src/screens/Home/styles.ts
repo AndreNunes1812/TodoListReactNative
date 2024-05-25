@@ -11,6 +11,11 @@ export const styles = StyleSheet.create({
     resizeMode: 'contain',
     margin: 20,
   },
+  imageTrash: {
+    width: 80,
+    height: 80,
+    marginRight: 120,
+  },
   input: {
     flex: 1,
     height: 56,
@@ -45,14 +50,44 @@ export const styles = StyleSheet.create({
     backgroundColor: '#0D0D0D',
     alignItems: 'center',
   },
+  task: {
+    flexDirection: 'column',
+    flex: 1,
+  },
   info: {
     flexDirection: 'row',
     width: '100%',
-    height: 247,
     justifyContent: 'space-between',
     marginTop: 25,
     paddingLeft: 18,
     paddingRight: 20,
+  },
+  empty: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    margin: 48,
+    gap: 16,
+  },
+  emptyText: {
+    width: '100%',
+    fontWeight: '700',
+    fontSize: 14,
+    lineHeight: 19.6,
+    color: '#808080',
+    marginLeft: -50,
+  },
+  emptyTextCria: {
+    width: '100%',
+    fontWeight: '400',
+    fontSize: 14,
+    lineHeight: 19.6,
+    alignContent: 'center',
+    color: '#808080',
+    marginTop: -18,
+    marginLeft: -42,
   },
   created: {
     flexDirection: 'row',
@@ -77,5 +112,11 @@ export const styles = StyleSheet.create({
   done: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  dottedLine: {
+    width: '100%',
+    borderWidth: 1,
+    borderStyle: 'dotted',
+    borderColor: 'white',
   },
 });
