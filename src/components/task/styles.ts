@@ -10,9 +10,12 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     width: 327,
     height: 64,
+    borderRadius: 8,
     justifyContent: 'space-between',
     alignItems: 'center',
+    alignContent: 'center',
     backgroundColor: '#262626',
+    marginBottom: 4,
   },
   textAli: {
     width: 235,
@@ -21,5 +24,11 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 19.6,
     color: '#F2F2F2',
+    marginTop: 15,
+  },
+
+  canceledText: {
+    textDecorationLine: 'line-through',
+    color: '#6B6B6B',
   },
 });

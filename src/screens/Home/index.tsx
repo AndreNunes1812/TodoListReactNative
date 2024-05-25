@@ -13,8 +13,65 @@ import {styles} from './styles';
 
 import {Task} from '../../components/task';
 
+type TaskItem = {
+  text: string;
+  isChecked: boolean;
+  isCanceled: boolean;
+};
+
+type FieldName = keyof TaskItem;
+
 export function Home() {
-  const [tasks, setTasks] = useState(['Andre Souza Nunes']);
+  const [tasks, setTasks] = useState<TaskItem[]>([]);
+  const [newTask, setNewTask] = useState<TaskItem>({
+    isChecked: false,
+    isCanceled: false,
+    text: '',
+  });
+
+  const handleAddTask = () => {
+    setTasks(prevTasks => [...prevTasks, newTask]);
+    console.log('handledAd', tasks);
+    setNewTask({
+      isChecked: false,
+      isCanceled: false,
+      text: '',
+    });
+  };
+
+  const handleInputChange = (field: FieldName, value: string) => {
+    setNewTask(prevState => ({
+      ...prevState,
+      [field]: value,
+    }));
+  };
+
+  const toggleCheck = (index: number) => {
+    console.log('toggleCheck:', index);
+    setTasks(prevTasks =>
+      prevTasks.map((task, i) =>
+        i === index ? {...task, isChecked: !task.isChecked} : task,
+      ),
+    );
+  };
+
+  const getCreatedTasksCount = () => {
+    return tasks.length;
+  };
+
+  const getCompletedTasksCount = () => {
+    return tasks.filter(task => task.isChecked).length;
+  };
+
+  const onRemove = (index: number) => {
+    console.log('onRemove:', index);
+    setTasks(prevTasks =>
+      prevTasks.map((task, i) =>
+        i === index ? {...task, isCanceled: true} : task,
+      ),
+    );
+  };
+
   return (
     <>
       <View style={styles.container}>
@@ -30,10 +87,10 @@ export function Home() {
             style={styles.input}
             placeholder="Adcione uma nova tarefa"
             placeholderTextColor="$6B6B6B"
-            onChangeText={text => () => null}
-            value={null}
+            onChangeText={text => handleInputChange('text', text)}
+            value={newTask.text}
           />
-          <TouchableOpacity style={styles.button} onPress={null}>
+          <TouchableOpacity style={styles.button} onPress={handleAddTask}>
             <Image source={require('../../../assets/images/plus.png')} />
           </TouchableOpacity>
         </View>
@@ -42,13 +99,13 @@ export function Home() {
             <View style={styles.created}>
               <Text style={styles.text}>Criadas </Text>
               <View style={styles.circle}>
-                <Text style={styles.counter}>10</Text>
+                <Text style={styles.counter}>{getCreatedTasksCount()}</Text>
               </View>
             </View>
             <View style={styles.done}>
               <Text style={styles.text}>Concluidas</Text>
               <View style={styles.circle}>
-                <Text style={styles.counter}>10</Text>
+                <Text style={styles.counter}>{getCompletedTasksCount()}</Text>
               </View>
             </View>
           </View>
@@ -70,8 +127,17 @@ export function Home() {
           </View>
           <FlatList
             data={tasks}
-            keyExtractor={item => item}
-            renderItem={({item}) => <Task key={item} name={item} />}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item, index}) => (
+              <Task
+                index={index}
+                text={item.text}
+                isChecked={item.isChecked}
+                isCanceled={item.isCanceled}
+                toggleCheck={() => toggleCheck(index)}
+                onRemove={() => onRemove(index)}
+              />
+            )}
             showsHorizontalScrollIndicator={false}
             ListEmptyComponent={() => (
               <View style={styles.empty}>
