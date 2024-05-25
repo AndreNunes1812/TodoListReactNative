@@ -46,7 +46,6 @@ export function Home() {
   };
 
   const toggleCheck = (index: number) => {
-    console.log('toggleCheck:', index);
     setTasks(prevTasks =>
       prevTasks.map((task, i) =>
         i === index ? {...task, isChecked: !task.isChecked} : task,
@@ -63,7 +62,6 @@ export function Home() {
   };
 
   const onRemove = (index: number) => {
-    console.log('onRemove:', index);
     setTasks(prevTasks =>
       prevTasks.map((task, i) =>
         i === index ? {...task, isCanceled: true} : task,
