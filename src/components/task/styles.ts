@@ -22,13 +22,4 @@ export const styles = StyleSheet.create({
     lineHeight: 19.6,
     color: '#F2F2F2',
   },
-  checkboxContainer: {
-    borderRadius: 5,
-    overflow: 'hidden',
-    padding: 2,
-  },
-  checkbox: {
-    width: 24,
-    height: 24,
-  },
 });

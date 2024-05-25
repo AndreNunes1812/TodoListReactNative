@@ -10,7 +10,7 @@ export function Task() {
     <>
       <View style={styles.container}>
         <View style={styles.box}>
-          <TouchableOpacity>
+          <TouchableOpacity style={[{marginLeft: 10}]}>
             <Image source={require('../../../assets/images/check.png')} />
           </TouchableOpacity>
           <View style={styles.textAli}>
