@@ -31,7 +31,6 @@ export function Home() {
 
   const handleAddTask = () => {
     setTasks(prevTasks => [...prevTasks, newTask]);
-    console.log('handledAd', tasks);
     setNewTask({
       isChecked: false,
       isCanceled: false,

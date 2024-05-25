@@ -18,8 +18,6 @@ export function Task({
 }: Props) {
   return (
     <>
-      <Text>Cancelados{isCanceled ? 'True' : 'false'}</Text>
-      <Text>Check{isChecked ? 'True' : 'false'}</Text>
       <View style={styles.container}>
         <View style={styles.box}>
           <TouchableOpacity
